@@ -1,0 +1,15 @@
+MYSQL_CONFIG:
+  name: 'admin_server'
+  type: 'mysql'
+  host: '43.139.17.79'
+  port: 3306
+  username: 'admin_user'
+  password: 'ljk1009.'
+  database: 'admin_server'
+  entities: 'mysql'
+  synchronize: true
+REDIS_CONFIG:
+  host: '43.139.17.79'
+  port: 6379
+  auth: 'ljk1009.'
+  db: 1
