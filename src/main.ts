@@ -18,7 +18,13 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(fastifyInstance)
+    new FastifyAdapter(fastifyInstance),
+    {
+      cors: {
+        origin: 'http://localhost:8000',
+        credentials: true
+      }
+    }
   )
   app.register(fastifyCookie, {
     secret: 'my-secret'
@@ -33,6 +39,7 @@ async function bootstrap() {
 
   // 异常过滤器
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter())
+
   await app.listen(8080)
 }
 bootstrap()

@@ -14,11 +14,15 @@ export class Authority extends baseCreateTime {
   @Column({ comment: '父角色ID' })
   parentId: number
 
-  @ManyToMany(() => Menu, menu => menu.authorities)
+  @ManyToMany(() => Menu, menu => menu.authorities, {
+    cascade: true
+  })
   @JoinTable()
   menus: Menu[]
 
-  @ManyToMany(() => User, user => user.authorities)
+  @ManyToMany(() => User, user => user.authorities, {
+    cascade: true
+  })
   @JoinTable()
   users: User[]
 

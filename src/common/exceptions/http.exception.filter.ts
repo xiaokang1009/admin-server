@@ -17,7 +17,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         status: error['code'],
         extra: {},
         message: error['message'],
-        success: false
+        success: false,
+        code: error['code']
       })
       return
     }

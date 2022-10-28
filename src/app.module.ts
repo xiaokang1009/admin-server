@@ -5,6 +5,9 @@ import { getConfig } from './utils'
 import * as redisStore from 'cache-manager-redis-store'
 import { APP_GUARD } from '@nestjs/core'
 import { JwtAuthGuard } from '@/common/auth/jwt-auth.guard'
+import { MenuModule } from '@/module/menu.module'
+import { UtilController } from '@/controller/util.controller'
+import { HttpModule } from '@nestjs/axios'
 
 @Module({
   imports: [
@@ -21,9 +24,11 @@ import { JwtAuthGuard } from '@/common/auth/jwt-auth.guard'
       isGlobal: true,
       load: [getConfig]
     }),
-    UserModule
+    HttpModule,
+    UserModule,
+    MenuModule
   ],
-  controllers: [],
+  controllers: [UtilController],
   providers: [
     {
       provide: APP_GUARD,

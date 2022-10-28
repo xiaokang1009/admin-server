@@ -1,5 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger'
 import dayjs from 'dayjs'
+import { Menu } from '@/entity/menu.entity'
+import { User } from '@/entity/user.entity'
+import { UserInfoItem } from '@/dto/user/user-info.vo'
+import { Authority } from '@/entity/authority.entity'
 
 class MetaInfo {
   @ApiProperty({ description: '是否缓存', example: true })
@@ -25,7 +29,7 @@ export class MenuInfo {
   @ApiProperty({ description: '创建时间', example: '2022-10-15 10:00:00' })
   createAt: Date
 
-  @ApiProperty({ description: '更新时间', example: dayjs(new Date(), 'YYYY-MM-DD HH:mm:ss') })
+  @ApiProperty({ description: '更新时间', example: '2022-10-15 10:00:00' })
   UpdateAt: Date
 
   @ApiProperty({ description: '前端组件路径文件.', example: 'view/dashboard/index.vue' })
@@ -44,26 +48,23 @@ export class MenuInfo {
   parentId: number
 
   @ApiProperty({ description: '子菜单', example: MenuInfo })
-  children: MetaInfo
+  children: MenuInfo
 
   @ApiProperty({ description: '前端路由path', example: '/dashboard' })
   path: string
 
   @ApiProperty({ description: '前端路由name', example: 'dashboard' })
   name: string
-}
 
-export class MenuInfoVo {
-  @ApiProperty({ type: MenuInfo })
-  info: MenuInfo
+  authories: Authority
 }
 
 export class MenuRespose {
   @ApiProperty({ description: '状态码', example: 200 })
   code: number
 
-  @ApiProperty({ description: '数据', type: () => MenuInfoVo, example: MenuInfoVo })
-  data: MenuInfoVo
+  @ApiProperty({ description: '数据', type: () => MenuInfo, example: MenuInfo })
+  data: MenuInfo
 
   @ApiProperty({ description: '请求结果信息', example: '请求成功' })
   message: string

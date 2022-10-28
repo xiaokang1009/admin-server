@@ -6,7 +6,7 @@ export class Meta {
   @PrimaryGeneratedColumn({ comment: 'meta id' })
   id: number
 
-  @Column({ comment: '自动关闭tab' })
+  @Column({ comment: '自动关闭tab', default: false })
   closeTab: boolean
 
   @Column({ comment: '是否是基础路由', default: false })
@@ -15,7 +15,7 @@ export class Meta {
   @Column({ comment: '菜单图标' })
   icon: string
 
-  @Column({ comment: '是否缓存', default: true })
+  @Column({ comment: '是否缓存', default: false })
   keepAlive: boolean
 
   @Column({ comment: '菜单名' })

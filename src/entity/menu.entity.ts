@@ -24,7 +24,7 @@ export class Menu extends baseCreateTime {
   @Column('varchar', { comment: '前端路由路径' })
   component: string
 
-  @Column('boolean', { comment: '是否在列表隐藏' })
+  @Column('boolean', { comment: '是否在列表隐藏', default: false })
   hidden: boolean
 
   @Column('varchar', { comment: '前端路由name' })
@@ -36,7 +36,9 @@ export class Menu extends baseCreateTime {
   @Column('int', { comment: '排序标记', default: 0 })
   sort: number
 
-  @OneToOne(() => Meta, meta => meta.menu)
+  @OneToOne(() => Meta, meta => meta.menu, {
+    cascade: true
+  })
   @JoinColumn()
   meta: Meta
 
