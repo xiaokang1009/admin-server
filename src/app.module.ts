@@ -1,3 +1,10 @@
+/*
+ * @Author: xiaokang1009
+ * @Date: 2022-10-28 15:49:49
+ * @LastEditors: xiaokang1009
+ * @LastEditTime: 2022-11-15 10:40:55
+ * @Description: 主modules
+ */
 import { UserModule } from './module/user.module'
 import { CacheModule, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'

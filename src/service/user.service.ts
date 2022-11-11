@@ -54,14 +54,16 @@ export class UserService {
     const { createTime, updateTime, id, mobile, username, uuid, nickname, version, authorities } =
       userInfo
     return {
-      createTime,
-      updateTime,
-      id,
-      mobile,
-      username,
-      uuid,
-      nickname,
-      version,
+      user: {
+        createTime,
+        updateTime,
+        id,
+        mobile,
+        username,
+        uuid,
+        nickname,
+        version
+      },
       authority: authorities[0]
     }
   }
