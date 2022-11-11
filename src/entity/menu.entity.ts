@@ -1,17 +1,11 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Meta } from '@/entity/meta.entity'
 import { baseCreateTime } from '@/entity/base'
 import { Authority } from '@/entity/authority.entity'
+
+/**
+ * 菜单
+ */
 
 @Entity()
 export class Menu extends baseCreateTime {

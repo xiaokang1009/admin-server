@@ -1,14 +1,17 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   VersionColumn
 } from 'typeorm'
 import { baseCreateTime } from '@/entity/base'
 import { Authority } from '@/entity/authority.entity'
+
+/**
+ * 用户
+ */
 
 @Entity()
 export class User extends baseCreateTime {
@@ -48,5 +51,6 @@ export class User extends baseCreateTime {
   salt: string
 
   @ManyToMany(() => Authority, authority => authority.users)
+  @JoinTable()
   authorities: Authority[]
 }

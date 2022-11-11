@@ -2,6 +2,11 @@ import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 't
 import { baseCreateTime } from '@/entity/base'
 import { Menu } from '@/entity/menu.entity'
 import { User } from '@/entity/user.entity'
+import { Api } from '@/entity/api.entity'
+
+/**
+ * 角色表
+ */
 
 @Entity()
 export class Authority extends baseCreateTime {
@@ -11,7 +16,7 @@ export class Authority extends baseCreateTime {
   @Column({ comment: '角色名' })
   authorityName: string
 
-  @Column({ comment: '父角色ID' })
+  @Column({ comment: '父角色ID', nullable: true })
   parentId: number
 
   @ManyToMany(() => Menu, menu => menu.authorities, {
@@ -23,9 +28,12 @@ export class Authority extends baseCreateTime {
   @ManyToMany(() => User, user => user.authorities, {
     cascade: true
   })
-  @JoinTable()
   users: User[]
 
   @Column({ comment: '默认路由', default: 'dashboard' })
   defaultRouter: string
+
+  @ManyToMany(() => Api, api => api.authorities)
+  @JoinTable()
+  apis: Api
 }

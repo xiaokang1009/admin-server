@@ -1,5 +1,4 @@
-import { LoginDTO } from '@/dto/user/login.dto'
-import { RegisterDTO } from '@/dto/user/register.dto'
+import { LoginDTO, RegisterDTO } from '@/dto/user'
 import { Inject, Injectable, NotFoundException } from '@nestjs/common'
 import { User } from '@/entity/user.entity'
 import { Repository } from 'typeorm'
@@ -12,7 +11,7 @@ export class UserService {
     @Inject('USER_REPOSITORY') private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService
   ) {}
-
+  // 注册
   async register(registerDTO: RegisterDTO): Promise<any> {
     await this.checkRegisterForm(registerDTO)
     const { username, password } = registerDTO
@@ -26,12 +25,14 @@ export class UserService {
     const user = await this.userRepository.save(newUser)
     if (user) {
       const token = await this.createToken(user)
+      const userInfo = await this.getUserInfo(user.uuid)
       return {
-        info: token
+        info: token,
+        user: userInfo
       }
     }
   }
-
+  // 校验注册信息
   async checkRegisterForm(registerDTO: RegisterDTO): Promise<any> {
     if (registerDTO.password !== registerDTO.passwordRepeat) {
       throw new NotFoundException('两次输入的密码不一致，请检查')
@@ -42,7 +43,28 @@ export class UserService {
       throw new NotFoundException('用户已存在')
     }
   }
-
+  // 获取用户信息
+  async getUserInfo(userId: string): Promise<any> {
+    console.log(1111)
+    const userInfo = await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.authorities', 'authority')
+      .where('user.uuid = :userId', { userId })
+      .getOne()
+    const { createTime, updateTime, id, mobile, username, uuid, nickname, version, authorities } =
+      userInfo
+    return {
+      createTime,
+      updateTime,
+      id,
+      mobile,
+      username,
+      uuid,
+      nickname,
+      version,
+      authority: authorities[0]
+    }
+  }
   // 登录校验用户信息
   async checkLoginForm(loginDTO: LoginDTO): Promise<User> {
     const { username, password } = loginDTO
@@ -62,7 +84,7 @@ export class UserService {
     }
     return user
   }
-
+  // 创建token
   async createToken(user: User): Promise<string> {
     const playload = {
       id: user.id,
@@ -72,12 +94,14 @@ export class UserService {
     const token = this.jwtService.sign(playload)
     return token
   }
-
+  // 登录
   async login(loginDTO: LoginDTO): Promise<any> {
     const user = await this.checkLoginForm(loginDTO)
     const token = await this.createToken(user)
+    const userInfo = await this.getUserInfo(user.uuid)
     return {
-      info: token
+      info: token,
+      user: userInfo
     }
   }
 }

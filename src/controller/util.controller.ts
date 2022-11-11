@@ -11,12 +11,4 @@ import { HttpService } from '@nestjs/axios'
 @Public()
 export class UtilController {
   constructor(private readonly httpService: HttpService) {}
-  @Get('getImage')
-  async getImage() {
-    console.log('获取图片')
-    const res = await this.httpService.axiosRef.get(
-      'https://api.ixiaowai.cn/api/api.php?return=json'
-    )
-    return res.data
-  }
 }
