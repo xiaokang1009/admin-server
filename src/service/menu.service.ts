@@ -22,7 +22,6 @@ export class MenuService {
         .where('authority.id = :roleId', { roleId })
         .getMany()
     }
-    console.log(menu)
     const result = menu.reduce((prev, cur) => {
       const pid = cur.parentId
       const parent = menu.find(item => item.id === pid)

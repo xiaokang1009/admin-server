@@ -1,10 +1,3 @@
-/*
- * @Author: xiaokang1009
- * @Date: 2022-11-14 16:58:13
- * @LastEditors: xiaokang1009
- * @LastEditTime: 2022-11-14 19:46:19
- * @Description:
- */
 import { Injectable, NestMiddleware } from '@nestjs/common'
 import { Logger } from '@/utils/log4js'
 import { FastifyRequest, FastifyReply } from 'fastify'

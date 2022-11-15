@@ -1,7 +1,7 @@
-import { FastifyReply } from 'fastify'
+import { FastifyReply, FastifyRequest } from 'fastify'
 import { TokenResponse, UserInfoResponse, RegisterDTO, LoginDTO } from '@/dto/user'
 import { UserService } from '@/service/user.service'
-import { Body, Controller, Post, Res } from '@nestjs/common'
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common'
 import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { Public } from '@/common/auth/constants'
 
@@ -38,5 +38,12 @@ export class UserController {
       path: '/'
     })
     return access_token.user
+  }
+
+  @ApiOkResponse({ description: '获取用户信息', type: UserInfoResponse })
+  @Get('getUserInfo')
+  async getUserInfo(@Req() req: FastifyRequest): Promise<UserInfoResponse> {
+    const { user } = req as any
+    return this.userService.getUserInfo(user.uuid)
   }
 }

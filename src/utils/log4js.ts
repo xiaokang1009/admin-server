@@ -1,11 +1,3 @@
-/*
- * @Author: xiaokang1009
- * @Date: 2022-11-14 16:13:24
- * @LastEditors: xiaokang1009
- * @LastEditTime: 2022-11-14 19:43:43
- * @Description: Log4js 工具函数 & 实例化
- */
-
 import * as Path from 'path'
 import * as Log4js from 'log4js'
 import * as Util from 'util'

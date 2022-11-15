@@ -1,10 +1,3 @@
-/*
- * @Author: xiaokang1009
- * @Date: 2022-11-14 11:37:58
- * @LastEditors: xiaokang1009
- * @LastEditTime: 2022-11-14 17:32:11
- * @Description: log4js的配置文件
- */
 import { Configuration } from 'log4js'
 import * as path from 'path'
 

@@ -11,9 +11,9 @@ export class MenuController {
 
   @ApiOkResponse({ description: '获取所有菜单', type: MenuRespose })
   @Get('getMenu')
-  async getMenu(@Req() req: FastifyRequest): Promise<any> {
-    const uuid = req.headers['x-uuid'] as string
-    const menu = this.menuService.getMenu(uuid)
+  async getMenu(@Req() req: FastifyRequest): Promise<MenuRespose> {
+    const { user } = req as any
+    const menu = await this.menuService.getMenu(user.uuid)
     return menu
   }
 }

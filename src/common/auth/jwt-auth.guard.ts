@@ -33,6 +33,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         })
       )
     }
+    console.log('user', user)
     return user
   }
 }

@@ -1,12 +1,4 @@
 import { DatabaseLogger } from './databaseLogger'
-/*
- * @Author: xiaokang1009
- * @Date: 2022-10-19 16:12:22
- * @LastEditors: xiaokang1009
- * @LastEditTime: 2022-11-14 19:28:39
- * @Description:
- */
-import { Logger } from '@/utils/log4js'
 const path = require('path')
 import { getConfig } from '../../utils'
 import { DataSource, DataSourceOptions } from 'typeorm'
