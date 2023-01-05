@@ -15,7 +15,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       response.status(HttpStatus.OK).send({
         data: null,
         status: error['code'],
-        message: error['message'],
+        msg: error['message'],
         success: false,
         code: error['code']
       })
@@ -27,7 +27,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       code: status,
-      message: exception.message
+      msg: exception.message
     })
   }
 }

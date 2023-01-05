@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { MenuInfo } from '@/dto/menu'
-import { UserInfoItem } from '@/dto/user'
 import { User } from '@/entity/user.entity'
 import { Menu } from '@/entity/menu.entity'
 import { Api } from '@/entity/api.entity'
